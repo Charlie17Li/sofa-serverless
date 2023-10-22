@@ -368,7 +368,8 @@ func (r *ModuleDeploymentReconciler) updateModuleReplicaSet(ctx context.Context,
 	}
 
 	// wait moduleReplicaset ready
-	if newRS.Spec.Replicas > curReplicas+moduleDeployment.Spec.OperationStrategy.MaxUnavailable.IntVal {
+
+	if newRS.Spec.Replicas > curReplicas+moduleDeployment.Spec.OperationStrategy.MaxUnavailable {
 		log.Log.Info(fmt.Sprintf("newRs is not ready, expect replicas %v, but got %v", newRS.Spec.Replicas, curReplicas))
 		return ctrl.Result{Requeue: true, RequeueAfter: utils.GetNextReconcileTime(time.Now())}, nil
 	}

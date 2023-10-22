@@ -19,7 +19,6 @@ package v1alpha1
 import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/util/intstr"
 )
 
 type ModuleDeploymentConditionType string
@@ -117,7 +116,7 @@ type ModuleOperationStrategy struct {
 
 	BatchCount int32 `json:"batchCount,omitempty"`
 
-	MaxUnavailable *intstr.IntOrString `json:"maxUnavailable,omitempty"`
+	MaxUnavailable int32 `json:"maxUnavailable,omitempty"`
 
 	GrayTimeBetweenBatchSeconds int32 `json:"grayTimeBetweenBatchSeconds,omitempty"`
 }
